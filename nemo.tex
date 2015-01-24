@@ -2,25 +2,37 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
-\usepackage[colorlinks=true]{hyperref} 
+\usepackage[colorlinks=true]{hyperref}
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
 
-\title{Le support des r\'{e}seaux mobiles dans IPv6}
+\title{Le support des r\'{e}seaux mobiles dans IPv6
+           le protocole NEMO }
 \author{SANFILIPPO Kaoutar Sarah , SARI Soumia}
 \date{2014 - 2015}
 
 \begin{document}
 
 \maketitle
-\newpage 
+\newpage
 \renewcommand{\contentsname}{Sommaire}
 \tableofcontents
 
 
+\newpage
 \section{Introduction}
+
+{\normalsize L'explosion des technologies de communication sans fil (e.g. Wi-Fi) a fait \'{e}merger un nouveau
+concept dans les r\'{e}seaux IP : la mobilit\'{e}. Lorsqu'un utilisateur b\'{e}n\'{e}ficie d'une connexion sans fil \`a
+l'Internet, celui-ci peut se d\'{e}placer tout en communiquant. Cependant, de tels d\'{e}placements
+requi\'{e}rent un support sp\'{e}cifique au niveau de la couche 3 du mod\`{e}le TCP/IP, sans lequel toutes les
+communications seront rompues lors d'un changement de sous-r\'{e}seaux IPv6. Pour palier ces
+probl\`{e}mes, l'organisme de standardisation IETF a d\'{e}fini le protocole NEMO (Network Mobility) Basic
+Support qui place la gestion de la mobilit\'{e} au niveau des routeurs, ce qui permet le mouvement de
+r\'{e}seaux entiers tout en conservant la complexit\'{e} de la gestion des d\'{e}placements dans l'Internet sur
+ces dits routeurs.}
+
 \section{Usages}
 \section{Contraintes}
 \section{Conclusion}
 
-
-\end{document}
+\end{document} 
