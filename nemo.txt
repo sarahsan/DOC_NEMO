@@ -1,0 +1,33 @@
+1   Introduction
+L'explosion des technologies de communication sans fil (e.g. Wi-Fi) a fait émerger un nouveau concept dans les réseaux IP :
+la mobilité. Lorsqu'un utilisateur bénécie d'une connexion sans l à l'Internet, celui-ci peut se déplacer tout en communiquant.
+Cependant, de tels déplacements requiérent un support spécique au niveau de la couche 3 du modèle TCP/IP, sans lequel toutes 
+les communications seront rompues lors d'un changement de sous-réseaux IPv6. Pour palier ces problèmes, l'organisme de 
+standardisation IETF a déni le protocole NEMO (Network Mobility) Basic Support qui place la gestion de la mobilité au niveau 
+des routeurs, ce qui permet le mouvement de réseaux entiers tout en conservant la complexité de la gestion des déplacements 
+dans l'Internet sur ces dits routeurs.
+
+2 Resaux Nemo
+Un réseau mobile ou réseau NEMO peut être défini comme un réseau /sous-réseau en déplacement, connecté à Internet par 
+l’intermédiaire d’un ou plusieurs routeurs qui changent leurs points d’attachements dans la topologie Internet. 
+La gestion de la mobilité des réseaux NEMO doit assurer d’une manière transparente la continuité des services Internet  
+pour les stations ou terminaux embarqué
+
+3 Protocol Nemo BS
+Le protocole NEMO BS [15] est une extension de MIPV6 [10] pour supporter la mobilité d’un réseau entier (réseau NEMO) qui
+change son point d’attachement à Internet. NEMO BS  assure d’une manière transparente la continuité des sessions ouvertes pour
+tous les nœuds dans le réseau mobile NEMO
+
+4  Fonctionnement  de base du protocole NEMO BS
+Grâce à l’introduction d’un routeur appelé routeur mobile (Mobile Router, MR) au niveau du réseau NEMO. Le réseau NEMO est 
+attaché au réseau mère/réseau visité par le biais du routeur mobile (MR) qui contrôle son mouvement.
+Toutes les communications depuis et vers les nœuds mobiles (Mobile Network Nodes, MNN) situés au sein du réseau NEMO passent 
+à travers le MR. Un préfixe IPv6 (Mobile Network Prefix, MNP) est délégué par le Home Agent (HA) au MR pour l’annoncer aux MNNs 
+situés au sein du réseau NEMO.
+Le MR admet au minimum deux interfaces : une interface interne (Ingress Interface,  IIF) et une interface externe 
+(Egress Interface,  EIF). L’interface IIF est configurée avec une adresse IP prise du préfixe MNP, tandis que l’interface EIF 
+est configurée avec l’adresse HoA lorsque le réseau NEMO (plus précisément le MR) est attaché au réseau mère (Home Network), 
+c’est l’adresse mère unique par laquelle il est accessible quand il est lié au réseau mère. Lorsque le MR est attaché à 
+un réseau visité, l’interface EIF sera configurée avec une adressetemporaire CoA
+
+
