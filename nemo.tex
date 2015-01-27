@@ -1,8 +1,9 @@
-\documentclass[a4paper]{article}
+\documentclass[12pt]{article}
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
 \usepackage[colorlinks=true]{hyperref}
+\usepackage{graphicx}
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
 
 \title{Le support des r\'{e}seaux mobiles dans IPv6
@@ -29,6 +30,34 @@ probl\`{e}mes, l'organisme de standardisation IETF a d\'{e}fini le protocole NEM
 Support qui place la gestion de la mobilit\'{e} au niveau des routeurs, ce qui permet le mouvement de
 r\'{e}seaux entiers tout en conservant la complexit\'{e} de la gestion des d\'{e}placements dans l'Internet sur
 ces dits routeurs.
+
+\newpage
+\section{Sc\'{e}nario}
+
+Apr\`{e}s avoir d\'{e}marr\'{e}, le routeur mobile se configure automatiquement pour assurer une connectivit\'{e} aux utilisateurs associ\'{e}s. Ces derniers vont pouvoir automatiquement d\'{e}couvrir des services IPv6 fournis par l'op\'{e}rateur. Enfin, le routeur en mouvement passant d'un r\'{e}seau d'acc\`{e}s à un autre conserve les connexions r\'{e}seaux de mani\`{e}re transparente pour l'utilisateur.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.7]{R2.png}
+\caption[9pt]{Fig.1 Exemple de r\'{e}seau mobile embarquant un routeur mobile munis de multiples interfaces. Le routeur mobile assure la continuit\'{e} de service tout au long des d\'{e}placements du train.}
+\end{center}
+\end{figure}
+
+\newpage
+\paragraph{Gestion de la Mobilit\'{e}:} 
+Le routeur mobile op\`{e}re le protocole NEMO BS qui lui permet d'\^{e}tre toujours joignable par l'interm\'{e}diaire de son adresse principale tout comme les clients associ\'{e}s dans le r\'{e}seau mobile. Cette adresse principale est associ\'{e}e \'{a} une adresse temporaire aupr\`{e}s d'un \'{e}quipement appel\'{e} agent m\`{e}re. Cette adresse temporaire repr\'{e}sente la position r\'{e}elle du routeur mobile dans la topologie d'Internet et est mise-\'{a}-jour \'{a} chaque d\'{e}placement du r\'{e}seau mobile vers un nouveau r\'{e}seau d'acc\'{e}s.
+L'ensemble des flux \'{a} destination du r\'{e}seau mobile passent toujours par l'agent m\`{e}re, qui peut donc assurer la continuit\'{e} des flux tout au long des d\'{e}placements du r\'{e}seau mobile.
+
+\paragraph{Multi-domiciliation:} 
+Le routeur mobile dispose de plusieurs interface r\'{e}seau lui permettant de se connecter en parall\`{e}le a plusieurs r\'{e}seaux d'acc\`{e}s IPv6. Son adresse principale est alors associ\'{e}e \`{a} plusieurs adresses IPv6 temporaires (une par interface) gr\^{a}ce au protocole Multiple Care-of Addresses registration (MCoA). Plusieurs chemins concurrents peuvent ainsi \^{e}tre maintenus entre le routeur mobile et son agent m\`{e}re.
+Les flux de l'Internet \'{a} destination du r\'{e}seau mobile ou inversement font l'objet d'une d\'{e}cision de routage respectivement sur l'agent m\`{e}re ou le routeur mobile. Ces d\'{e}cisions sont prises en fonction de \'{e}\'{e}rences ou politiques de routages pr\'{e}sentes sur chacune de ces entit\'{e}s.
+Les flux peuvent ainsi \^{e}tre partag\'{e}s entre diff\'{e}rent chemins selon leur protocol et/ou port. Le routeur mobile et l'agent m\`{e}re peuvent \'{e}galement plus facilement faire face \'{a} une panne ou une d\'{e}connexion de l'un des r\'{e}seaux d'acc\`{e}s en redirigeant les flux vers les interfaces disponibles.
+Nous travaillons \'{e}galement \'{a} la gestion de routeurs mobiles multiples au sein d'un m\^{e}me r\'{e}seau mobile. Nous nous int\'{e}ressons notamment aux m\'{e}canismes de redondance des routeurs mobiles tout en \'{e}tendant la mise en oeuvre du partage de charge et de tol\'{e}rance au fautes dans ce contexte.
+
+
+
+
+
 
 \section{Usages}
 \section{Contraintes}
