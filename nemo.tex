@@ -48,7 +48,6 @@ Le protocole NEMO BS est une extension de MIPV6 pour supporter la mobilit\'e d'u
 
 Gr\^ace \`a l'introduction d'un routeur appel\'e routeur mobile (Mobile Router, MR) qui est l'entit\'é la plus importante  au niveau du r\'eseau NEMO.
  Le réseau NEMO est attach\'e au r\'eseau m\`ere/r\'eseau visit\'e par le biais du routeur mobile (MR) qui contr\^ole son mouvement. 
-
 Toutes les communications depuis et vers les nœuds mobiles (Mobile Network Nodes, MNN) situés au sein du r\'eseau NEMO passent \`a travers le MR, le changement de point d'acc\`es ne provoque pas de changement d'adresse IP de MNN.
  Un pr\'efixe IPv6 (Mobile Network Prefix, MNP) est d\'el\'egu\'e par le Home Agent (HA) au MR pour l’annoncer aux MNNs situ\'es au sein du r\'eseau NEMO.
 Le MR admet au minimum deux interfaces : une interface interne (Ingress Interface,  IIF) et une interface externe (Egress Interface,  EIF). L'interface IIF est configur\'ee avec une adresse IP prise du pr\'efixe MNP, tandis que l'interface EIF est configur\'ee avec l'adresse HoA lorsque le r\'eseau NEMO (plus pr\'ecis\'ement le MR) est attach\'e au r\'eseau m\`ere (Home Network), c'est l'adresse m\`ere unique par laquelle il est accessible quand il est li\'e au r\'eseau m\`ere. Lorsque le MR est attach\'e \`a un r\'eseau visit\'e, l'interface EIF sera configur\'ee avec une adresse temporaire CoA
@@ -64,11 +63,10 @@ Le MR admet au minimum deux interfaces : une interface interne (Ingress Interfac
 \section{Sc\'{e}nario}
 
 Apr\`{e}s avoir d\'{e}marr\'{e}, le routeur mobile se configure automatiquement pour assurer une connectivit\'{e} aux utilisateurs associ\'{e}s. Ces derniers vont pouvoir automatiquement d\'{e}couvrir des services IPv6 fournis par l'op\'{e}rateur. Enfin, le routeur en mouvement passant d'un r\'{e}seau d'acc\`{e}s à un autre conserve les connexions r\'{e}seaux de mani\`{e}re transparente pour l'utilisateur.
-
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.7]{R2.png}
-\caption[9pt]{Fig.1 Exemple de r\'{e}seau mobile embarquant un routeur mobile munis de multiples interfaces. Le routeur mobile assure la continuit\'{e} de service tout au long des d\'{e}placements du train.}
+\caption[9pt]{Fig.2 Exemple de r\'{e}seau mobile embarquant un routeur mobile munis de multiples interfaces. Le routeur mobile assure la continuit\'{e} de service tout au long des d\'{e}placements du train.}
 \end{center}
 \end{figure}
 
@@ -83,13 +81,17 @@ Les flux de l'Internet \'{a} destination du r\'{e}seau mobile ou inversement fon
 Les flux peuvent ainsi \^{e}tre partag\'{e}s entre diff\'{e}rent chemins selon leur protocol et/ou port. Le routeur mobile et l'agent m\`{e}re peuvent \'{e}galement plus facilement faire face \'{a} une panne ou une d\'{e}connexion de l'un des r\'{e}seaux d'acc\`{e}s en redirigeant les flux vers les interfaces disponibles.
 Nous travaillons \'{e}galement \'{a} la gestion de routeurs mobiles multiples au sein d'un m\^{e}me r\'{e}seau mobile. Nous nous int\'{e}ressons notamment aux m\'{e}canismes de redondance des routeurs mobiles tout en \'{e}tendant la mise en oeuvre du partage de charge et de tol\'{e}rance au fautes dans ce contexte.
 
-
-
-
-
-
-\section{Usages}
+\newpage
 \section{Contraintes}
+La gestion de la mobilit\'e des r\'eseaux mobiles doit se faire face \`a de nombreuse contraintes:
+\begin{enumerate}
+  \item il convient de supporter les r\'eseaux mobiles en nombre et en taille importantes , en consid\'erant divers types de configuration ( un seul sous-r\'eseau , la multi-domiciliation, la mobilit\'e enchain\'ee).
+  \item Le nombre \'elev\'e de correspondants nous impose de minimiser la quantit\'e de messages de controle relatifs \`a la gestion de la mobilit\'e tout en optimisant le routage.
+  \item Ces messages doivent \^etre \'echang\'es en toute s\'ecurit\'e et authentifi\'es par leurs destinataires pour s'assur\'er qu'ils ne sont pas envoy\'es par un usurpateur. 
+\end{enumerate}
+
 \section{Conclusion}
+Le support des r\'eseaux mobiles est \`a pr\'esent un sujet qui int\'eresse se nombreux industriels, allant des fournisseurs
+ d'\'equipement r\'eseaux ou d'\'electronique grand publique jusq'aux fabriquant d'automobiles, en passant par les op\'erateurs de t\'elephone et de transport public.
 
 \end{document} 
