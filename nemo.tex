@@ -1,20 +1,41 @@
-\documentclass[12pt]{article}
-\usepackage[latin1]{inputenc}
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{graphicx}
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
 
-\title{Le support des r\'{e}seaux mobiles dans IPv6
-           le protocole NEMO }
-\author{SANFILIPPO Kaoutar Sarah , SARI Soumia}
-\date{2014 - 2015}
+\newcommand{\myTitle}{
+\begingroup 
+\centering 
+
+
+\vspace{\stretch{1}}
+{\LARGE Le support des r\'{e}seaux mobiles dans IPv6}% Title
+
+\vspace*{1\baselineskip}
+
+\LARGE % Small caps
+Le protocole NEMO
+\vspace{\stretch{2}}
+
+\vspace{\stretch{1}}
+{\Large SARI Soumia \& Kaoutar Sarah SANFILIPPO\par} 
+\vspace{\stretch{2}}
+
+\vspace{\stretch{1}}
+{\large 2014 - 2015}
+\vspace{\stretch{2}}%pour gérer les espaces sur des pages,  \stretch{} fait des espaces proportionnels
+\setcounter{page}{0}
+
+\endgroup}
+
 
 \begin{document}
+\thispagestyle{empty}
+\myTitle
 
-\maketitle
-\newpage
 \renewcommand{\contentsname}{Sommaire}
 \tableofcontents
 
@@ -41,15 +62,16 @@ Un des objectifs est de ne pas imposer des modifications aux noeuds mobiles.
 Un r\'eseau mobile ou r\'eseau NEMO peut \^etre d\'efini comme un r\'eseau /sous-r\'eseau en d\'eplacement, connect\'e \`a Internet par l'interm\'ediaire d'un ou plusieurs routeurs qui changent leurs points d'attachements dans la topologie Internet. La gestion de la mobilit\'e des r\'eseaux NEMO doit assurer d'une mani\`ere transparente la continuit\'e des services Internet  pour les stations ou terminaux embarqu\'e.
 
 \section{Protocol Nemo  Basic Support (BS)}
-Le protocole NEMO BS est une extension de MIPV6 pour supporter la mobilit\'e d'un r\'eseau entier (r\'eseau NEMO) qui change son point d'attachement \`a Internet. NEMO BS  assure d'une mani\`ere transparente la continuit\'e des sessions ouvertes pour tous les nœuds dans le r\'eseau mobile NEMO.
+Le protocole NEMO BS est une extension de MIPV6 pour supporter la mobilit\'{e} d'un 
+r\'{e}seau entier (r\'{e}seau NEMO) qui change son point d'attachement \`{a} Internet. NEMO BS  assure d'une mani\`ere transparente la continuit\'e des sessions ouvertes pour tous les nœuds dans le r\'eseau mobile NEMO.
 
 \newpage
 \section{Fonctionnement  de base du protocole NEMO BS}
 
-Gr\^ace \`a l'introduction d'un routeur appel\'e routeur mobile (Mobile Router, MR) qui est l'entit\'é la plus importante  au niveau du r\'eseau NEMO.
+Gr\^ace \`a l'introduction d'un routeur appel\'e routeur mobile (Mobile Router, MR) qui est l'entit\'e la plus importante  au niveau du r\'eseau NEMO.
  Le réseau NEMO est attach\'e au r\'eseau m\`ere/r\'eseau visit\'e par le biais du routeur mobile (MR) qui contr\^ole son mouvement. 
 Toutes les communications depuis et vers les nœuds mobiles (Mobile Network Nodes, MNN) situés au sein du r\'eseau NEMO passent \`a travers le MR, le changement de point d'acc\`es ne provoque pas de changement d'adresse IP de MNN.
- Un pr\'efixe IPv6 (Mobile Network Prefix, MNP) est d\'el\'egu\'e par le Home Agent (HA) au MR pour l’annoncer aux MNNs situ\'es au sein du r\'eseau NEMO.
+Un pr\'efixe IPv6 (Mobile Network Prefix, MNP) est d\'el\'egu\'e par le Home Agent (HA) au MR pour l’annoncer aux MNNs situ\'es au sein du r\'eseau NEMO.
 Le MR admet au minimum deux interfaces : une interface interne (Ingress Interface,  IIF) et une interface externe (Egress Interface,  EIF). L'interface IIF est configur\'ee avec une adresse IP prise du pr\'efixe MNP, tandis que l'interface EIF est configur\'ee avec l'adresse HoA lorsque le r\'eseau NEMO (plus pr\'ecis\'ement le MR) est attach\'e au r\'eseau m\`ere (Home Network), c'est l'adresse m\`ere unique par laquelle il est accessible quand il est li\'e au r\'eseau m\`ere. Lorsque le MR est attach\'e \`a un r\'eseau visit\'e, l'interface EIF sera configur\'ee avec une adresse temporaire CoA
 
 \begin{figure}[h]
