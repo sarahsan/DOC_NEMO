@@ -50,7 +50,7 @@ communications seront rompues lors d'un changement de sous-r\'{e}seaux IPv6. Pou
 probl\`{e}mes, l'organisme de standardisation IETF a d\'{e}fini le protocole NEMO (Network Mobility) Basic
 Support qui place la gestion de la mobilit\'{e} au niveau des routeurs, ce qui permet le mouvement de
 r\'{e}seaux entiers tout en conservant la complexit\'{e} de la gestion des d\'{e}placements dans l'Internet sur
-ces dits routeurs.
+ces dits routeurs.\cite{ref}
 
 \section{Historique}
 
@@ -72,7 +72,7 @@ Gr\^ace \`a l'introduction d'un routeur appel\'e routeur mobile (Mobile Router, 
  Le réseau NEMO est attach\'e au r\'eseau m\`ere/r\'eseau visit\'e par le biais du routeur mobile (MR) qui contr\^ole son mouvement. 
 Toutes les communications depuis et vers les nœuds mobiles (Mobile Network Nodes, MNN) situés au sein du r\'eseau NEMO passent \`a travers le MR, le changement de point d'acc\`es ne provoque pas de changement d'adresse IP de MNN.
 Un pr\'efixe IPv6 (Mobile Network Prefix, MNP) est d\'el\'egu\'e par le Home Agent (HA) au MR pour l’annoncer aux MNNs situ\'es au sein du r\'eseau NEMO.
-Le MR admet au minimum deux interfaces : une interface interne (Ingress Interface,  IIF) et une interface externe (Egress Interface,  EIF). L'interface IIF est configur\'ee avec une adresse IP prise du pr\'efixe MNP, tandis que l'interface EIF est configur\'ee avec l'adresse HoA lorsque le r\'eseau NEMO (plus pr\'ecis\'ement le MR) est attach\'e au r\'eseau m\`ere (Home Network), c'est l'adresse m\`ere unique par laquelle il est accessible quand il est li\'e au r\'eseau m\`ere. Lorsque le MR est attach\'e \`a un r\'eseau visit\'e, l'interface EIF sera configur\'ee avec une adresse temporaire CoA
+Le MR admet au minimum deux interfaces : une interface interne (Ingress Interface,  IIF) et une interface externe (Egress Interface,  EIF). L'interface IIF est configur\'ee avec une adresse IP prise du pr\'efixe MNP, tandis que l'interface EIF est configur\'ee avec l'adresse HoA lorsque le r\'eseau NEMO (plus pr\'ecis\'ement le MR) est attach\'e au r\'eseau m\`ere (Home Network), c'est l'adresse m\`ere unique par laquelle il est accessible quand il est li\'e au r\'eseau m\`ere. Lorsque le MR est attach\'e \`a un r\'eseau visit\'e, l'interface EIF sera configur\'ee avec une adresse temporaire CoA \cite{benaouda2014etude}
 
 \begin{figure}[h]
 \begin{center}
@@ -101,7 +101,7 @@ L'ensemble des flux \'{a} destination du r\'{e}seau mobile passent toujours par 
 Le routeur mobile dispose de plusieurs interface r\'{e}seau lui permettant de se connecter en parall\`{e}le a plusieurs r\'{e}seaux d'acc\`{e}s IPv6. Son adresse principale est alors associ\'{e}e \`{a} plusieurs adresses IPv6 temporaires (une par interface) gr\^{a}ce au protocole Multiple Care-of Addresses registration (MCoA). Plusieurs chemins concurrents peuvent ainsi \^{e}tre maintenus entre le routeur mobile et son agent m\`{e}re.
 Les flux de l'Internet \'{a} destination du r\'{e}seau mobile ou inversement font l'objet d'une d\'{e}cision de routage respectivement sur l'agent m\`{e}re ou le routeur mobile. Ces d\'{e}cisions sont prises en fonction de \'{e}\'{e}rences ou politiques de routages pr\'{e}sentes sur chacune de ces entit\'{e}s.
 Les flux peuvent ainsi \^{e}tre partag\'{e}s entre diff\'{e}rent chemins selon leur protocol et/ou port. Le routeur mobile et l'agent m\`{e}re peuvent \'{e}galement plus facilement faire face \'{a} une panne ou une d\'{e}connexion de l'un des r\'{e}seaux d'acc\`{e}s en redirigeant les flux vers les interfaces disponibles.
-Nous travaillons \'{e}galement \'{a} la gestion de routeurs mobiles multiples au sein d'un m\^{e}me r\'{e}seau mobile. Nous nous int\'{e}ressons notamment aux m\'{e}canismes de redondance des routeurs mobiles tout en \'{e}tendant la mise en oeuvre du partage de charge et de tol\'{e}rance au fautes dans ce contexte.
+Nous travaillons \'{e}galement \'{a} la gestion de routeurs mobiles multiples au sein d'un m\^{e}me r\'{e}seau mobile. Nous nous int\'{e}ressons notamment aux m\'{e}canismes de redondance des routeurs mobiles tout en \'{e}tendant la mise en oeuvre du partage de charge et de tol\'{e}rance au fautes dans ce contexte. \cite{ref3}
 
 \newpage
 \section{Contraintes}
@@ -109,11 +109,14 @@ La gestion de la mobilit\'e des r\'eseaux mobiles doit se faire face \`a de nomb
 \begin{enumerate}
   \item il convient de supporter les r\'eseaux mobiles en nombre et en taille importantes , en consid\'erant divers types de configuration ( un seul sous-r\'eseau , la multi-domiciliation, la mobilit\'e enchain\'ee).
   \item Le nombre \'elev\'e de correspondants nous impose de minimiser la quantit\'e de messages de controle relatifs \`a la gestion de la mobilit\'e tout en optimisant le routage.
-  \item Ces messages doivent \^etre \'echang\'es en toute s\'ecurit\'e et authentifi\'es par leurs destinataires pour s'assur\'er qu'ils ne sont pas envoy\'es par un usurpateur. 
+  \item Ces messages doivent \^etre \'echang\'es en toute s\'ecurit\'e et authentifi\'es par leurs destinataires pour s'assur\'er qu'ils ne sont pas envoy\'es par un usurpateur. \cite{referance}
 \end{enumerate}
 
 \section{Conclusion}
 Le support des r\'eseaux mobiles est \`a pr\'esent un sujet qui int\'eresse se nombreux industriels, allant des fournisseurs
- d'\'equipement r\'eseaux ou d'\'electronique grand publique jusq'aux fabriquant d'automobiles, en passant par les op\'erateurs de t\'elephone et de transport public.
+ d'\'equipement r\'eseaux ou d'\'electronique grand publique jusq'aux fabriquant d'automobiles, en passant par les op\'erateurs de t\'elephone et de transport public. 
+
+\bibliographystyle{unsrt} %plain, unsrt, alpha, abbrv, acm, apalike
+\bibliography{nemo} % mon fichier de base de données s'appelle bibli.bib
 
 \end{document} 
