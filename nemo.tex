@@ -2,6 +2,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
+\frenchbsetup{StandardLists=true} % ‡ inclure si on utilise \usepackage[french]{babel}
+\usepackage{enumitem}
+\usepackage{amssymb}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{graphicx}
 \hypersetup{urlcolor=black,linkcolor=black,citecolor=black,colorlinks=true}
@@ -26,7 +29,7 @@ Le protocole NEMO
 
 \vspace{\stretch{1}}
 {\large 2014 - 2015}
-\vspace{\stretch{2}}%pour g√©rer les espaces sur des pages,  \stretch{} fait des espaces proportionnels
+\vspace{\stretch{2}}%pour gÈrer les espaces sur des pages,  \stretch{} fait des espaces proportionnels
 \setcounter{page}{0}
 
 \endgroup}
@@ -52,25 +55,38 @@ Support qui place la gestion de la mobilit\'{e} au niveau des routeurs, ce qui p
 r\'{e}seaux entiers tout en conservant la complexit\'{e} de la gestion des d\'{e}placements dans l'Internet sur
 ces dits routeurs.\cite{ref}
 
-\section{Historique}
-
-Le groupe NEMO de l'IETF a fait son apparition en octobre 2002 , et a standardis\'e une solution simple connu sous
-le nom de NEMO BASIC SUPPORT d\'eriv\'e de Mobile IP pour g\'erer la mobilit\'e des r\'eseaux.
-Un des objectifs est de ne pas imposer des modifications aux noeuds mobiles.
  
 \section{Les R\'eseaux NEMO}
 Un r\'eseau mobile ou r\'eseau NEMO peut \^etre d\'efini comme un r\'eseau ou sous r\'eseau en d\'eplacement, connect\'e \`a Internet par l'interm\'ediaire d'un ou plusieurs routeurs qui changent leurs points d'attachements dans la topologie Internet. La gestion de la mobilit\'e des r\'eseaux NEMO doit assurer d'une mani\`ere transparente la continuit\'e des services Internet  pour les stations ou terminaux embarqu\'es.
 
 \section{Le Protocol Nemo  Basic Support (BS)}
-Le protocole NEMO BS est une extension de Mobile IPv6(MIPV6) pour supporter la mobilit\'{e} d'un r\'{e}seau entier (r\'{e}seau NEMO) qui change son point d'attachement \`{a} Internet. NEMO BS  assure d'une mani\`ere transparente la continuit\'e des sessions ouvertes pour tous les n≈ìuds dans le r\'eseau mobile NEMO.
+Le protocole NEMO BS est une extension de Mobile IPv6(MIPV6) pour supporter la mobilit\'{e} d'un r\'{e}seau entier (r\'{e}seau NEMO) qui change son point d'attachement \`{a} Internet. NEMO BS  assure d'une mani\`ere transparente la continuit\'e des sessions ouvertes pour tous les núuds dans le r\'eseau mobile NEMO.
+
+\newpage
+\section{Terminologie}
+\begin{itemize}[label=$\square$]
+\item  Mobile Node (MN) ou n\oe{}ud mobile: un terminal mobile ou un routeur mobile qui change son point d'attachement d'un r\'eseau \`a un autre.
+\item  Home Network ou r\'eseau m\`ere: c'est le r\'eseau auquel est attach\'e initialement un MN.
+\item  Home Agent (HA) ou agent m\`ere : un routeur d'acc\`es particulier situ\'e dans le r\'eseau m\`ere qui participe \`a la gestion de la mobilit\'e du MN.
+\item  Foreign Network ou r\'eseau visit\'e: n'importe quel r\'eseau autre que le r\'eseau m\`ere auquel le MN est connect\'e.
+\item  Foreign Agent (FA) ou agent visit\'e: un routeur d'acc\`es dans le r\'eseau visit\'e qui fournit au MN un service de routage des paquets qui lui sont destin\'es par le HA.
+\item  Home Address (HoA) ou adresse m\`ere : est l'adresse IP du MN sur son r\'eseau m\`ere. Elle fournit l'identification du MN pour tous ses correspondants.
+\item  Care-of Address (CoA) ou adresse temporaire : est l'adresse IP de localisation du MN, obtenue au r\'eseau visit\'e, et qui lui permet  d'envoyer et recevoir des paquets sur ce r\'eseau. 
+\item  Correspondant Node (CN) ou núud correspondant : est un terminal en communication  avec le MN. Un CN peut \^etre fixe ou mobile.
+\item MNNs Mobile Network Node : Noeud Mobile R\'eseau.
+\item MNP Mobile Network Prefix :R\'eseau mobile pr\'efixe.
+\item MR Mobile Router : le routeur mobile.
+
+
+\end{itemize}
 
 \newpage
 \section{Fonctionnement  de base du protocole NEMO BS}
 
 Gr\^ace \`a l'introduction d'un routeur appel\'e routeur mobile (Mobile Router, MR) qui est l'entit\'e la plus importante  au niveau du r\'eseau NEMO.
- Le r√©seau NEMO est attach\'e au r\'eseau m\`ere/r\'eseau visit\'e par le biais du routeur mobile (MR) qui contr\^ole son mouvement. 
-Toutes les communications depuis et vers les n≈ìuds mobiles (Mobile Network Nodes, MNN) situ√©s au sein du r\'eseau NEMO passent \`a travers le MR, le changement de point d'acc\`es ne provoque pas de changement d'adresse IP de MNN.
-Un pr\'efixe IPv6 (Mobile Network Prefix, MNP) est d\'el\'egu\'e par le Home Agent (HA) au MR pour l‚Äôannoncer aux MNNs situ\'es au sein du r\'eseau NEMO.
+ Le rÈseau NEMO est attach\'e au r\'eseau m\`ere/r\'eseau visit\'e par le biais du routeur mobile (MR) qui contr\^ole son mouvement. 
+Toutes les communications depuis et vers les núuds mobiles (Mobile Network Nodes, MNN) situÈs au sein du r\'eseau NEMO passent \`a travers le MR, le changement de point d'acc\`es ne provoque pas de changement d'adresse IP de MNN.
+Un pr\'efixe IPv6 (Mobile Network Prefix, MNP) est d\'el\'egu\'e par le Home Agent (HA) au MR pour líannoncer aux MNNs situ\'es au sein du r\'eseau NEMO.
 Le MR admet au minimum deux interfaces : une interface interne (Ingress Interface,  IIF) et une interface externe (Egress Interface,  EIF). L'interface IIF est configur\'ee avec une adresse IP prise du pr\'efixe MNP, tandis que l'interface EIF est configur\'ee avec l'adresse HoA lorsque le r\'eseau NEMO (plus pr\'ecis\'ement le MR) est attach\'e au r\'eseau m\`ere (Home Network), c'est l'adresse m\`ere unique par laquelle il est accessible quand il est li\'e au r\'eseau m\`ere. Lorsque le MR est attach\'e \`a un r\'eseau visit\'e, l'interface EIF sera configur\'ee avec une adresse temporaire CoA \cite{benaouda2014etude}
 
 \begin{figure}[h]
@@ -83,7 +99,7 @@ Le MR admet au minimum deux interfaces : une interface interne (Ingress Interfac
 \newpage
 \section{Sc\'{e}nario}
 
-Apr\`{e}s avoir d\'{e}marr\'{e}, le routeur mobile se configure automatiquement pour assurer une connectivit\'{e} aux utilisateurs associ\'{e}s. Ces derniers vont pouvoir automatiquement d\'{e}couvrir des services IPv6 fournis par l'op\'{e}rateur. Enfin, le routeur en mouvement passant d'un r\'{e}seau d'acc\`{e}s √† un autre conserve les connexions r\'{e}seaux de mani\`{e}re transparente pour l'utilisateur.
+Apr\`{e}s avoir d\'{e}marr\'{e}, le routeur mobile se configure automatiquement pour assurer une connectivit\'{e} aux utilisateurs associ\'{e}s. Ces derniers vont pouvoir automatiquement d\'{e}couvrir des services IPv6 fournis par l'op\'{e}rateur. Enfin, le routeur en mouvement passant d'un r\'{e}seau d'acc\`{e}s ‡ un autre conserve les connexions r\'{e}seaux de mani\`{e}re transparente pour l'utilisateur.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=0.5]{R2}
@@ -116,6 +132,6 @@ Le support des r\'eseaux mobiles est \`a pr\'esent un sujet qui int\'eresse se n
  d'\'equipement r\'eseaux ou d'\'electronique grand publique jusq'aux fabriquant d'automobiles, en passant par les op\'erateurs de t\'elephone et de transport public. 
 
 \bibliographystyle{unsrt} %plain, unsrt, alpha, abbrv, acm, apalike
-\bibliography{nemo} % mon fichier de base de donn√©es s'appelle bibli.bib
+\bibliography{nemo} % mon fichier de base de donnÈes s'appelle bibli.bib
 
 \end{document} 
