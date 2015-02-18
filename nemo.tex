@@ -83,11 +83,13 @@ Le protocole NEMO BS est une extension de Mobile IPv6(MIPV6) pour supporter la m
 \newpage
 \section{Fonctionnement  de base du protocole NEMO BS}
 
-Gr\^ace \`a l'introduction d'un routeur appel\'e routeur mobile (Mobile Router, MR) qui est l'entit\'e la plus importante  au niveau du r\'eseau NEMO.
- Le réseau NEMO est attach\'e au r\'eseau m\`ere/r\'eseau visit\'e par le biais du routeur mobile (MR) qui contr\^ole son mouvement. 
-Toutes les communications depuis et vers les nœuds mobiles (Mobile Network Nodes, MNN) situés au sein du r\'eseau NEMO passent \`a travers le MR, le changement de point d'acc\`es ne provoque pas de changement d'adresse IP de MNN.
-Un pr\'efixe IPv6 (Mobile Network Prefix, MNP) est d\'el\'egu\'e par le Home Agent (HA) au MR pour l’annoncer aux MNNs situ\'es au sein du r\'eseau NEMO.
-Le MR admet au minimum deux interfaces : une interface interne (Ingress Interface,  IIF) et une interface externe (Egress Interface,  EIF). L'interface IIF est configur\'ee avec une adresse IP prise du pr\'efixe MNP, tandis que l'interface EIF est configur\'ee avec l'adresse HoA lorsque le r\'eseau NEMO (plus pr\'ecis\'ement le MR) est attach\'e au r\'eseau m\`ere (Home Network), c'est l'adresse m\`ere unique par laquelle il est accessible quand il est li\'e au r\'eseau m\`ere. Lorsque le MR est attach\'e \`a un r\'eseau visit\'e, l'interface EIF sera configur\'ee avec une adresse temporaire CoA \cite{benaouda2014etude}
+Le standard NEMO, pour Network MObility, de l'IETF est d\'eriv\'e de Mobile IP pour G\'erer la mobilit\'e des r\'eseaux IP . Un sous-r\'eseau comporte des n\oe{}uds mobiles avec le m\^eme pr\'efixe d'adresse IP (MNP). Ce sous-r\'eseau est associ\'e \`a un
+ r\'eseau m\`ere et peut changer de r\'eseau en changeant de point d'ancrage, c'est-\`a-dire de point d'acc\`es. Un des objectifs est de ne pas imposer des modifications aux n\oe{}uds mobiles.
+Deux nouvelles entit\'es sont introduites : le n\oe{}ud du r\'eseau mobile (MNN) et le routeur mobile (MR). Le MNN est un n\oe{}ud mobile qui fait partie du r\'eseau mobile. Le routeur mobile est l'entit\'e la plus importante de NEMO. Le changement de point d'acc\`es ne provoque pas de changement d'adresse IP du MNN. La gestion de la mobilit\'e est d\'el\'egu\'ee au MR. Le MR, comme le n\oe{}ud mobile de Mobile IP, poss\`ede deux adresses. Le premi\`ere, l'adresse m\`ere, est permanente et identifie le MR dans le r\'eseau m\`ere. Son pr\'efixe est le m\^eme que les MNN. Du fait qu'elle ne change pas, tout correspondant sur Internet peut atteindre le MR. La seconde adresse, l'adresse temporaire, est obtenue dans le r\'eseau visit\'e, o\`u se trouve le point d’acc\`es. Le protocole NEMO \'etablit ainsi une association entre le pr\'efixe MNP du sous-r\'eseau mobile et l'adresse temporaire. Lorsque le r\'eseau change de point d'ancrage, le MNP envoie son adresse temporaire \`a l'agent m\`ere (HA) du r\'eseau m\`ere. L'agent m\`ere actualise l'association entre le pr\'efixe du sous-r\'eseau et l'adresse temporaire. Un tunnel est ensuite \'etabli entre le MR et le HA pour transmettre les paquets provenant d'Internet vers le MR. Le HA encapsule le paquet pour le transmettre au MR, puis le MR d\'esencapsule le paquet. Le MR utilise ensuite le protocole de routage du sous-r\'eseau pour transmettre les paquets vers
+le MNN . Pour le correspondant, la mobilit\'e est alors transparente, puisqu'il envoie ses donn\'ees \`a
+un routeur du r\'eseau m\`ere. Les paquets \`a destination d'un correspondant sur Internet sont envoy\'es au MR, avec le protocole de routage utilis\'e par le sous-r\'eseau mobile, puis encapsul\'es
+pour \^etre envoy\'es au HA. Le HA d\'esencapsule le paquet, puis transmet le paquet au correspondant. Tout le trafic en provenance et \`a destination du sous-r\'eseau mobile passe alors par le HA, ce qui rend le routage sous optimal.`  
+\cite{benaouda2014etude}
 
 \begin{figure}[h]
 \begin{center}
@@ -118,7 +120,7 @@ Les flux de l'Internet \'{a} destination du r\'{e}seau mobile ou inversement fon
 Les flux peuvent ainsi \^{e}tre partag\'{e}s entre diff\'{e}rent chemins selon leur protocol et/ou port. Le routeur mobile et l'agent m\`{e}re peuvent \'{e}galement plus facilement faire face \'{a} une panne ou une d\'{e}connexion de l'un des r\'{e}seaux d'acc\`{e}s en redirigeant les flux vers les interfaces disponibles.
 Nous travaillons \'{e}galement \'{a} la gestion de routeurs mobiles multiples au sein d'un m\^{e}me r\'{e}seau mobile. Nous nous int\'{e}ressons notamment aux m\'{e}canismes de redondance des routeurs mobiles tout en \'{e}tendant la mise en oeuvre du partage de charge et de tol\'{e}rance au fautes dans ce contexte. \cite{ref3}
 
-\newpage
+
 \section{Contraintes}
 La gestion de la mobilit\'e des r\'eseaux mobiles doit se faire face \`a de nombreuse contraintes:
 \begin{enumerate}
